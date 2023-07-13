@@ -6,6 +6,12 @@ __pycache__/
 # pdf
 *.pdf
 
+#pycharm
+.idea/
+
+#json
+*.json
+
 # txt
 *.txt
 
