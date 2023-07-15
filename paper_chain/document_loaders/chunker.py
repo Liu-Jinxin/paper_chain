@@ -1,9 +1,10 @@
-def chunk_text(text, chunk_size):
+def chunk_text(text, chunk_size, overlap=0):
     """
     Split text into chunks of a given size.
-    
+
     :param text: The text to chunk.
     :param chunk_size: The maximum size of each chunk.
+    :param overlap: The size of the overlap between chunks.
     :return: A list of text chunks.
     """
     words = text.split()
@@ -23,5 +24,9 @@ def chunk_text(text, chunk_size):
         
         # Join the chunk and add it to the list of chunks
         chunks.append(' '.join(chunk))
+        
+        # If there is overlap, put back the last overlap number of words back into words list
+        if overlap > 0 and words:
+            words = chunk[-overlap:] + words
     
     return chunks
