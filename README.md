@@ -14,7 +14,6 @@ paper_chain
 │  │  ├─ pdf_to_txt.py
 │  │  ├─ test_loader.py
 │  │  ├─ __init__.py
-
 │  ├─ utils
 │  │  └─ __init__.py
 │  ├─ __init__.py

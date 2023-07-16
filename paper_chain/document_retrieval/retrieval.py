@@ -3,7 +3,7 @@ from sentence_transformers.util import semantic_search
 from sentence_transformers import SentenceTransformer, util
 import torch
 import numpy as np
-import personal
+import yaml
 
 
 class Retrieval_From_Database():
@@ -11,7 +11,9 @@ class Retrieval_From_Database():
         self.database = None
         self.database_embeddings_list = None
         self.model_id = "sentence-transformers/all-MiniLM-L6-v2"
-        self.hf_token = personal.hf_token
+        with open('config.yaml', 'r') as file:
+            config = yaml.safe_load(file)
+        self.hf_token = config['HUGGINGFACE_TOKEN']
         self.api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{self.model_id}"
         self.headers = {"Authorization": f"Bearer {self.hf_token}"}
 
