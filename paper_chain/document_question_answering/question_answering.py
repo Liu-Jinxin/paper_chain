@@ -29,6 +29,13 @@ class Question_Answering():
         final_answer = ' '.join(filtered_answers)
         return final_answer
 
+    def filter_and_combine_top_answers(self, answers, n=5):
+        # Sort the answers based on the score in descending order and combine the top n into a single string
+        sorted_answers = sorted(answers, key=lambda x: x['score'], reverse=True)
+        top_answers = [answer['answer'] for answer in sorted_answers[:n]]
+        final_answer = ' '.join(top_answers)
+        return final_answer
+    
 if __name__ == '__main__':
     # Create a Question_Answering object
     QA_model = Question_Answering()
