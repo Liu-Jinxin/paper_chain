@@ -1,7 +1,7 @@
 # combined_test.py
 import os
 from document_loaders.loader import load_documents
-from document_question_answering.question_answering import Question_Answering
+from document_question_answering.question_answering_roberta import Question_Answering
 
 def main():
     # Define the PDF URL and destination folder
