@@ -1,11 +1,15 @@
 import yaml
 from transformers import AutoTokenizer, pipeline
 import torch
+import os
 
 class Question_Answering_Llama2():
     def __init__(self) -> None:
         self.model_name = "meta-llama/Llama-2-7b-chat-hf"
-        with open('/home/jinxin/Desktop/github/paper_chain/paper_chain/config.yaml', 'r') as file:
+        self.current_dir = os.path.dirname(os.path.abspath(__file__))
+        parent_dir = os.path.dirname(self.current_dir)
+        config_file_path = os.path.join(parent_dir, 'config.yaml')
+        with open(config_file_path, 'r') as file:
             config = yaml.safe_load(file)
         self.hf_token = config['HUGGINGFACE_TOKEN']
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, use_auth_token=self.hf_token)
@@ -15,7 +19,7 @@ class Question_Answering_Llama2():
     def get_answer(self, question):
         # Use the model to get the answer for a single question
         res = self.qa_model(question, temperature=1, num_return_sequences=1, top_p=0.95, 
-                            eos_token_id=self.tokenizer.eos_token_id, max_length=1024, max_new_tokens=1024)
+                        eos_token_id=self.tokenizer.eos_token_id, max_length=1024, max_new_tokens=1024)
         return res[0]['generated_text']
 
     def get_answers_for_chunks(self, question, chunks, chunk_indices):

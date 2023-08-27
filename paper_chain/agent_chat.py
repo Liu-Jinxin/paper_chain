@@ -4,7 +4,7 @@ import yaml
 
 print('cuda_version:', torch.version.cuda)
 
-with open('/workspace/config.yaml', 'r') as file:
+with open('/workspace/paper_chain/config.yaml', 'r') as file:
     config = yaml.safe_load(file)
 hf_token = config['HUGGINGFACE_TOKEN']
 
