@@ -15,8 +15,6 @@ __pycache__/
 # txt
 *.txt
 
-# config
-*.yaml
 
 # C extensions
 *.so
